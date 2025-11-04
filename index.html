@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refrimix Tecnologia — Especialista em Climatização VRV/VRF</title>
+    <meta name="description" content="Soluções premium em climatização residencial e comercial com sistemas VRV/VRF, Multi-Split e High-Wall. Conforto, eficiência e tecnologia de ponta.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.refrimix.com.br/">
+    <meta property="og:title" content="Refrimix Tecnologia — Especialista em Climatização VRV/VRF">
+    <meta property="og:description" content="Soluções premium em climatização residencial e comercial com sistemas VRV/VRF, Multi-Split e High-Wall.">
+    <meta property="og:image" content="https://www.daikin.com.br/-/media/images/products/vrv/vrv-inova/banner/banner-hero-vrv-inova-1600x640.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.refrimix.com.br/">
+    <meta property="twitter:title" content="Refrimix Tecnologia — Especialista em Climatização VRV/VRF">
+    <meta property="twitter:description" content="Soluções premium em climatização residencial e comercial com sistemas VRV/VRF, Multi-Split e High-Wall.">
+    <meta property="twitter:image" content="https://www.daikin.com.br/-/media/images/products/vrv/vrv-inova/banner/banner-hero-vrv-inova-1600x640.jpg">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Set theme on initial load to prevent FOUC
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        // UPDATE: Applying Daikin official color palette
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            primary: "#003A70", // Daikin Dark Blue
+                            gold: "#0097D8",    // Daikin Blue (replaces gold)
+                            accent: "#74C5E1",  // Daikin Light Blue
+                            grey: "#D7DBDD",    // Daikin Grey
+                            black: "#0A0A0A",   // Retaining for overlays
+                            white: "#FFFFFF",
+                        },
+                        light: {
+                            bg: "#FFFFFF",
+                            fg: "#003A70",      // Daikin Dark Blue text
+                            card: "#FFFFFF",
+                            border: "#D7DBDD",    // Daikin Grey
+                        },
+                        dark: {
+                            bg: "#002a50",      // Darker base for contrast
+                            fg: "#FFFFFF",
+                            card: "#003A70",      // Primary color as card bg
+                            border: "#0097D8",    // Daikin Blue
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Refrimix Tecnologia",
+      "image": "https://www.refrimix.com.br/logo.png",
+      "@id": "",
+      "url": "https://www.refrimix.com.br",
+      "telephone": "+55-11-5555-1234",
+      "priceRange": "$$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Paulista, 1000",
+        "addressLocality": "São Paulo",
+        "addressRegion": "SP",
+        "postalCode": "01310-100",
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -23.5613,
+        "longitude": -46.6565
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "08:00",
+        "closes": "18:00"
+      }
+    }
+    </script>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "recharts": "https://aistudiocdn.com/recharts@^3.3.0",
+    "@supabase/supabase-js": "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.8/dist/module/index.js"
+  }
+}
+</script>
+</head>
+<body class="bg-light-bg text-light-fg dark:bg-dark-bg dark:text-dark-fg transition-colors duration-300">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
