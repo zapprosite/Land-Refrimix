@@ -1,0 +1,132 @@
+{
+  "requests": [
+    {
+      "requestId": "req-1",
+      "originalRequest": "PRD: Implementação do backend /api/ai/chat, configuração de segurança (Supabase RLS + backend), documentação e testes (unitário, integração e segurança).",
+      "splitDetails": "PRD: Implementação do backend /api/ai/chat, configuração de segurança (Supabase RLS + backend), documentação e testes (unitário, integração e segurança).",
+      "tasks": [
+        {
+          "id": "task-1",
+          "title": "Contrato do endpoint /api/ai/chat",
+          "description": "Especificar schema JSON (request/response), códigos de erro e validações; definir limites de payload e timeouts.",
+          "done": true,
+          "approved": true,
+          "completedDetails": "Contrato definido em docs/API.md (request/response, erros 400/429/500, limites de payload 32KB, timeouts 20s endpoint/15s provedor) e docs/PRD.md (requisitos funcionais). Referências: docs/API.md:1, docs/PRD.md:1."
+        },
+        {
+          "id": "task-2",
+          "title": "Implementar controlador POST /api/ai/chat",
+          "description": "Receber JSON, validar entrada, chamar serviço de IA (proxy), retornar { content: string }.",
+          "done": true,
+          "approved": false,
+          "completedDetails": "Controlador implementado em backend/src/routes/ai.ts e integrado via backend/src/app.ts com middlewares: requestId, security headers (CSP/HSTS/NoSniff/FrameOptions), no-store, JSON limit 32KB + erros (invalid_json/payload_too_large), rate limiting e auth condicional. Serviço de IA em backend/src/services/aiService.ts com timeout 15s, stub por env e integração OpenAI opcional. Validação em backend/src/utils/validate.ts. Endpoint retorna { content, requestId } e erros padronizados, com Retry-After em 429."
+        },
+        {
+          "id": "task-3",
+          "title": "Serviço de IA (proxy)",
+          "description": "Encapsular chamada ao provedor; tratar erros, timeouts, backoff e sanitização de mensagens.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        },
+        {
+          "id": "task-4",
+          "title": "Logs e observabilidade",
+          "description": "Instrumentar logs estruturados (reqId, tempo, status); mascarar PII; definir níveis e retenção.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        },
+        {
+          "id": "task-5",
+          "title": "Habilitar RLS no Supabase",
+          "description": "Ativar RLS em todas as tabelas expostas: leads, clientes, agendamentos, chat_messages.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        },
+        {
+          "id": "task-6",
+          "title": "Políticas de acesso por tabela",
+          "description": "Criar políticas granulares (select/insert/update/delete) por role; alinhar com requisitos de negócio.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        },
+        {
+          "id": "task-7",
+          "title": "Papéis e permissões",
+          "description": "Configurar roles (anon, authenticated, service_role) e permissões mínimas por caso de uso.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        },
+        {
+          "id": "task-8",
+          "title": "Rate limiting backend",
+          "description": "Adicionar limiter por IP/rota; cenários burst e steady-state; respostas com Retry-After.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        },
+        {
+          "id": "task-9",
+          "title": "Headers de segurança + CORS",
+          "description": "Configurar CSP, HSTS, X-Content-Type-Options, X-Frame-Options; CORS com allowlist.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        },
+        {
+          "id": "task-10",
+          "title": "Proteções comuns",
+          "description": "Validar/sanitizar entrada; evitar XSS/SSRF; safe defaults para timeouts e tamanhos; no SQL dinâmico.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        },
+        {
+          "id": "task-11",
+          "title": "Documentar API e segurança",
+          "description": "Atualizar README e docs/API.md com exemplos; documentar políticas e guias de ambiente.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        },
+        {
+          "id": "task-12",
+          "title": "Testes unitários",
+          "description": "Cobrir controlador e serviço de IA (mocks); casos de erro/timeout/validação.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        },
+        {
+          "id": "task-13",
+          "title": "Testes de integração",
+          "description": "Fluxo completo POST /api/ai/chat; validação de logs; CORS; rate limiting.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        },
+        {
+          "id": "task-14",
+          "title": "Testes de segurança",
+          "description": "Headers esperados; tentativa de XSS; payloads grandes; validação do limiter.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        },
+        {
+          "id": "task-15",
+          "title": "Guia de ambientes",
+          "description": "Criar docs/ENVIRONMENTS.md: DEV/STG/PRD, variáveis, rotinas de rotação de segredo.",
+          "done": false,
+          "approved": false,
+          "completedDetails": ""
+        }
+      ],
+      "completed": false
+    }
+  ]
+}

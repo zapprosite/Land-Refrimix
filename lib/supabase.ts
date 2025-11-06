@@ -1,14 +1,44 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 
-// As credenciais do Supabase devem ser configuradas como variáveis de ambiente no projeto.
-// Para este ambiente de desenvolvimento, estamos usando valores de placeholder.
-// Substitua pelos seus dados reais do projeto Supabase para conectar a um back-end funcional.
-const supabaseUrl = "https://elrtxrbrwitqxpgaiimw.supabase.co";
-const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVscnR4cmJyd2l0cXhwZ2FpaW13Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIyNjQzNTQsImV4cCI6MjA3Nzg0MDM1NH0.7dj4v4X9-uJfaXqjdkWwC3juKboVbyU4oOqHkgVC7O4key";
+// Carregar via variáveis de ambiente em tempo de build (Vite)
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string | undefined;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
+const mode = (import.meta as any).env?.MODE || process.env.NODE_ENV || 'development';
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  // Isso não deve acontecer com valores fixos, mas é uma boa prática.
-  throw new Error("Credenciais do Supabase não estão definidas. Verifique o arquivo lib/supabase.ts.");
+let supabaseClient: SupabaseClient | any;
+
+if (supabaseUrl && supabaseAnonKey) {
+  supabaseClient = createClient(supabaseUrl, supabaseAnonKey);
+} else {
+  if (mode === 'production') {
+    throw new Error(
+      '[supabase] Variáveis de ambiente ausentes em produção: VITE_SUPABASE_URL e VITE_SUPABASE_ANON_KEY.',
+    );
+  }
+  // Stub de desenvolvimento/teste para permitir E2E offline
+  // Não persiste dados; apenas evita que o app quebre.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const stub: any = {
+    from: () => ({
+      select: () => Promise.resolve({ data: [], error: null }),
+      order: () => Promise.resolve({ data: [], error: null }),
+      insert: () => Promise.resolve({ data: [], error: null }),
+      update: () => ({
+        eq: () => ({
+          select: () => ({ single: () => Promise.resolve({ data: {}, error: null }) }),
+        }),
+      }),
+      gte: () => ({ lt: () => Promise.resolve({ count: 0, error: null }) }),
+      eq: () => Promise.resolve({ count: 0, error: null }),
+    }),
+    auth: {
+      getSession: async () => ({ data: { session: null } }),
+      onAuthStateChange: (_cb: unknown) => ({ data: { subscription: { unsubscribe: () => {} } } }),
+      signInWithOAuth: async () => ({ error: null }),
+      signOut: async () => ({ error: null }),
+    },
+  };
+  supabaseClient = stub as SupabaseClient;
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+export const supabase = supabaseClient as SupabaseClient;
