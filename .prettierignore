@@ -1,0 +1,11 @@
+node_modules
+dist
+dist-ssr
+coverage
+test-results
+logs
+backend/dist
+.vite
+.vite-temp
+*.log
+test_plan.json

@@ -11,6 +11,11 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
+.env.local
+logs/
+test-results/
+mcp-shell.log
 
 # Editor directories and files
 .vscode/*
