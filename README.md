@@ -5,7 +5,7 @@
   <p>Gestão de leads, clientes e operações com chatbot consultivo especializado em HVAC‑R.</p>
 
   <p>
-    <a href="https://img.shields.io/badge/build-passing-brightgreen"><img alt="build" src="https://img.shields.io/badge/build-passing-brightgreen"></a>
+    <a href="https://github.com/zapprosite/Land-Refrimix/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/zapprosite/Land-Refrimix/actions/workflows/ci.yml/badge.svg"></a>
     <a href="#tests"><img alt="coverage" src="https://img.shields.io/badge/coverage-90%25-brightgreen"></a>
     <a href="https://img.shields.io/badge/node-%3E%3D18.0-blue"><img alt="node" src="https://img.shields.io/badge/node-%3E%3D18.0-blue"></a>
     <a href="https://img.shields.io/badge/typescript-5.x-3178c6"><img alt="ts" src="https://img.shields.io/badge/typescript-5.x-3178c6"></a>
