@@ -11,7 +11,7 @@ Estrutura
 Executar localmente
 
 1. cd backend
-2. Copie .env.example para .env e ajuste variáveis
+2. Copie .env.example para .env e ajuste variáveis (o backend carrega .env automaticamente via dotenv)
 3. npm install
 4. npm run dev (sobe em http://localhost:4000)
 

@@ -62,7 +62,7 @@ cd Land-Refrimix
 npm install
 ```
 
-2) Configurar variáveis do frontend
+2) Configurar variáveis do frontend (DEV)
 ```bash
 cp .env.example .env.local
 # Edite .env.local (não commitar):
@@ -81,7 +81,7 @@ PORT=4010 npm run dev
 # GET /health → 200 OK
 ```
 
-4) Frontend
+4) Frontend (DEV)
 ```bash
 cd ..
 npm run dev
@@ -125,6 +125,24 @@ Frontend (E2E Playwright)
 ```bash
 npx playwright test
 ```
+
+## Deploy (Vercel)
+
+### Padrão recomendado
+- Importar o repositório direto na Vercel (raiz do projeto)
+- Build: `npm run build`  • Output: `dist`  • Framework: Vite (auto)
+- Arquivo `vercel.json` já presente com rotas e SPA fallback
+- Função Serverless para chat: `api/ai/chat.ts` (usa `OPENAI_API_KEY` ou `AI_STUB=true`)
+
+### Variáveis de ambiente (Vercel — Production)
+- `VITE_AI_PROXY_URL=/api/ai/chat`
+- `OPENAI_API_KEY=...` (ou `AI_STUB=true` para respostas locais)
+- `REQUIRE_AUTH=false` (ou `true` + `SERVICE_API_KEY=...` se desejar proteção extra na API)
+- (Opcional) `UPSTREAM_TIMEOUT_MS=15000`
+
+### Observações
+- Em produção, o frontend chama `/api/ai/chat` no mesmo domínio (sem expor chaves).
+- Para usar Supabase, defina `VITE_SUPABASE_URL` e `VITE_SUPABASE_ANON_KEY` nas variáveis do projeto.
 
 ## Contribuição
 Contribuições são bem‑vindas!
